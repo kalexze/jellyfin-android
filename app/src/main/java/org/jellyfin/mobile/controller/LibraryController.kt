@@ -11,6 +11,7 @@ import org.jellyfin.mobile.model.dto.toUserViewInfo
 import org.jellyfin.sdk.api.client.ApiClient
 import org.jellyfin.sdk.api.operations.UserViewsApi
 import org.jellyfin.sdk.model.api.BaseItemDto
+import java.util.UUID
 
 class LibraryController(
     private val apiClient: ApiClient,
@@ -28,6 +29,8 @@ class LibraryController(
             } ?: emptyList()
         }
     }
+
+    fun getCollection(id: UUID): UserViewInfo? = userViews.find { collection -> collection.id == id }
 
     companion object {
         val SUPPORTED_COLLECTION_TYPES = setOf(
